@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 import com.app.dto.DTOResponseAdmin;
 import com.app.dto.DtoRequestAdmin;
 import com.app.entities.Admin;
+import com.app.entities.Role;
+import com.app.exception.Exception404;
+import com.app.exception.Exception500;
 import com.app.mapper.MapperAdmin;
 import com.app.repo.RepoAdmin;
+import com.app.repo.RepoRole;
 
 
 
@@ -16,6 +20,8 @@ import com.app.repo.RepoAdmin;
 public class ServiceAdmin {
 	@Autowired
 	private RepoAdmin repoAdmin;
+	@Autowired
+	private RepoRole rollrepo;
 	@Autowired
 	private MapperAdmin mapperAdmin ;
 	public List <Admin> getAdmin(){
@@ -43,7 +49,13 @@ public class ServiceAdmin {
 	
 		return mapperAdmin.adminToResponseDto(repoAdmin.save(admin));
 	}
-	public void AssignRole(Admin admin) {
+	public DTOResponseAdmin AssignRole( String username,String Rollname) {
+		Admin admin2=repoAdmin.findByUsername(username);
+		if(admin2!=null) throw  new Exception404("admin not found");
+       Role role =rollrepo.findByRoleName(Rollname);
+		if(role!=null) throw  new Exception404("role not found");
+		admin2.getRoles().add(role);
+	return	mapperAdmin.adminToResponseDto(repoAdmin.save(admin2));	
 		
 	}
 	

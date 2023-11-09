@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DTOResponseAdmin;
 import com.app.dto.DtoRequestAdmin;
+import com.app.dto.RoleToAdmin;
 import com.app.entities.Admin;
 import com.app.service.ServiceAdmin;
 
@@ -41,6 +42,11 @@ public class WebAdmin {
 	@PostMapping("")
 	public ResponseEntity<DTOResponseAdmin > addAdmin(@RequestBody DtoRequestAdmin dtoRequestAdmin) {
 		DTOResponseAdmin dtoResponseAdmin=	serviceAdmin.AddAdmin(dtoRequestAdmin);
+		return  new ResponseEntity<>(dtoResponseAdmin,HttpStatus.CREATED);
+	}
+	@PostMapping("ass")
+	public ResponseEntity<DTOResponseAdmin > rolletoadmin(@RequestBody RoleToAdmin roleToAdmin ) {
+		  DTOResponseAdmin dtoResponseAdmin = serviceAdmin.AssignRole(roleToAdmin.getUsername(),roleToAdmin.getRollname());
 		return  new ResponseEntity<>(dtoResponseAdmin,HttpStatus.CREATED);
 	}
 	

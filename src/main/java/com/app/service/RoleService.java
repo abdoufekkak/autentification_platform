@@ -29,4 +29,12 @@ public class RoleService {
 	role=roleRepo.save(role);
 	 return mapperRole.roleToResponseDto(role);
 	}
+	
+	public void deleteRole(Integer Id) {
+		Role role=roleRepo.findById(Id).orElse(null);
+		if(role==null) { throw new com.app.exception.Exception404("admin not found");}
+		roleRepo.delete(role);
+	}
+	
+	
 }
