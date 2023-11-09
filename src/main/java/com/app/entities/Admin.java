@@ -14,12 +14,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Admin implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	
@@ -30,10 +36,7 @@ public class Admin implements Serializable{
 	
 	 @ManyToMany
 	    private List<Role> roles = new ArrayList<>();
-	public Admin() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 
