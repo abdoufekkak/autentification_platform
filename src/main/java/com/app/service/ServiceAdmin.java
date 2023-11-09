@@ -1,45 +1,62 @@
 package com.app.service;
 
-//import java.util.List;
-//
-//import org.mapstruct.factory.Mappers;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import com.app.entities.Admin;
-//import com.app.repo.RepoAdmin;
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.dto.DTOResponseAdmin;
+import com.app.dto.DtoRequestAdmin;
+import com.app.entities.Admin;
+import com.app.entities.Role;
+import com.app.exception.Exception404;
+import com.app.exception.Exception500;
+import com.app.mapper.MapperAdmin;
+import com.app.repo.RepoAdmin;
+import com.app.repo.RepoRole;
 
 
 
-//@Service
+@Service
 public class ServiceAdmin {
-//	@Autowired
-//	private RepoAdmin repoAdmin;
-//	private MapperAdmin mapperAdmin = Mappers.getMapper(MapperAdmin.class);
-//	public List <Admin> getAdmin(){
-//		return repoAdmin.findAll();
-//	}
-//	
-//	public DTOResponseAdmin AddAdmin(DtoRequestAdmin dtoRequestAdmin){
-//		Admin admin2=repoAdmin.findByUsername(dtoRequestAdmin.getUsername());
-//		if(admin2!=null) { throw new Exception500("admin already exist"); }
-//		Admin admin= mapperAdmin.DtoRequestToAdmin(dtoRequestAdmin);
-//		 admin=repoAdmin.save(admin);
-//		 return mapperAdmin.AdminTODtoResponse(admin);
-//	}
-//	
-//	public void deleteAdmin(Integer Id) {
-//		Admin admin2=repoAdmin.findById(Id).orElse(null);
-//		if(admin2==null) { throw new Exception404("admin not found");}
-//	   repoAdmin.delete(admin2);
-//	}
-//	
-//	public DTOResponseAdmin ModifyAdmin(DtoRequestAdmin dtoRequestAdmin,Integer Id){
-//		Admin admin2=repoAdmin.findById(Id).orElse(null);
-//		if(admin2==null) { throw new Exception404("admin not found"); }
-//		Admin admin= mapperAdmin.DtoRequestToAdmin(dtoRequestAdmin);
-//	
-//		return mapperAdmin.AdminTODtoResponse(repoAdmin.save(admin));
-//	}
+	@Autowired
+	private RepoAdmin repoAdmin;
+	@Autowired
+	private RepoRole rollrepo;
+	@Autowired
+	private MapperAdmin mapperAdmin ;
+	public List <Admin> getAdmin(){
+		return repoAdmin.findAll();
+	}
+	
+	public DTOResponseAdmin AddAdmin(DtoRequestAdmin dtoRequestAdmin){
+		Admin admin2=repoAdmin.findByUsername(dtoRequestAdmin.getUsername());
+		if(admin2!=null) { throw new Exception500("admin already exist"); }
+		Admin admin= mapperAdmin.requestAdminToAdmin(dtoRequestAdmin);
+		 admin=repoAdmin.save(admin);
+		 return mapperAdmin.adminToResponseDto(admin);
+	}
+
+	public void deleteAdmin(Integer Id) {
+		Admin admin2=repoAdmin.findById(Id).orElse(null);
+		if(admin2==null) { throw new Exception404("admin not found");}
+	   repoAdmin.delete(admin2);
+	}
+	
+	public DTOResponseAdmin ModifyAdmin(DtoRequestAdmin dtoRequestAdmin,Integer Id){
+		Admin admin2=repoAdmin.findById(Id).orElse(null);
+		if(admin2==null) { throw new Exception404("admin not found"); }
+		Admin admin= mapperAdmin.requestAdminToAdmin(dtoRequestAdmin);
+	
+		return mapperAdmin.adminToResponseDto(repoAdmin.save(admin));
+	}
+	public DTOResponseAdmin AssignRole( String username,String Rollname) {
+		Admin admin2=repoAdmin.findByUsername(username);
+		if(admin2!=null) throw  new Exception404("admin not found");
+       Role role =rollrepo.findByRoleName(Rollname);
+		if(role!=null) throw  new Exception404("role not found");
+		admin2.getRoles().add(role);
+	return	mapperAdmin.adminToResponseDto(repoAdmin.save(admin2));	
+		
+	}
 	
 }
