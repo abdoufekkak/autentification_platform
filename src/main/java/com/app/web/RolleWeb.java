@@ -37,7 +37,7 @@ public class RolleWeb {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deletAdmin(@PathVariable Integer id) {
+	public ResponseEntity<?> deleteRole(@PathVariable Integer id) {
 		roleService.deleteRole(id);
 	        return ResponseEntity.noContent().build();
 	}

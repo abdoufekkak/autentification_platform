@@ -23,12 +23,18 @@ public class CompteService {
 	@Autowired 
 	CompteMapper mapperCompte;
 	
+	public void deleteCompte(Integer id ){
+		Compte compte = compteRepo.findById(id).orElse(null); 
+		if(compte==null) { throw new com.app.exception.Exception404("compte not found");}
+		compteRepo.delete(compte);	
+		}
 	public List<Compte> getAll(){
 		return compteRepo.findAll();
 	}
 	public  CompteResponseDto addCompte(CompteRequestDto dtoRequestCompte) {	
 		Compte compte=compteRepo.findByUsername(dtoRequestCompte.getUserName());
-		if(compte!=null) { throw new Exception500("compte already exist"); }
+		Compte compte2=compteRepo.findByMail(dtoRequestCompte.getMail());
+		if(compte!=null || compte2!=null) { throw new Exception500("compte already exist"); }
 		compte=	mapperCompte.requestCompteToCompte(dtoRequestCompte);
 		compte=compteRepo.save(compte);
 		 return mapperCompte.compteToResponseDto(compte);

@@ -26,9 +26,9 @@ public class Compte implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer Id;
     @Column(unique = true,nullable = false)
-	public Integer mail;
+	public String mail;
     @Column(nullable = false)
-	public Integer motPass;
+	public String motPass;
 	@Column(unique = true,nullable = false)
-	public Integer userName;
+	public String userName;
 }
