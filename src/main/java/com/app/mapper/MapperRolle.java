@@ -1,9 +1,12 @@
 package com.app.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.app.dto.DtoRequestRolle;
 import com.app.dto.DtoResponseRole;
 import com.app.entities.Role;
 
+@Component
 public class MapperRolle {
 
 	public Role reuestRoleToleRole(DtoRequestRolle dtoRequestRolle) {
