@@ -6,13 +6,16 @@ import jakarta.persistence.Id;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Role implements Serializable {
 
 	/**
@@ -22,6 +25,7 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Integer Id; 
+	@Column(nullable = false)
 	private String roleName;
 	
 	
