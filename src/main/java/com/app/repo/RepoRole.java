@@ -7,4 +7,5 @@ import com.app.entities.Role;
 
 @Repository
 public interface RepoRole extends JpaRepository<Role, Integer>{
+	
 }

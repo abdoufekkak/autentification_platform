@@ -21,11 +21,10 @@ public class Compte implements Serializable{
 	 * 
 	 * 
 	 */
-	
+		
 	@jakarta.persistence.Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer Id;
-	
     @Column(unique = true,nullable = false)
 	public Integer mail;
     @Column(nullable = false)
