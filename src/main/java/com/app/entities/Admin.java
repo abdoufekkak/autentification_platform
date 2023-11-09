@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.entities.Role;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
