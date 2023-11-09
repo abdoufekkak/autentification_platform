@@ -11,29 +11,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.CompteRequestDto;
-import com.app.dto.CompteResponseDto;
 import com.app.dto.DtoRequestRolle;
 import com.app.dto.DtoResponseRole;
-import com.app.entities.Compte;
-import com.app.service.CompteService;
 import com.app.service.RoleService;
+import com.app.entities.Role;
+
 
 @RestController
-@RequestMapping("cmopte/")
-public class CompteWeb {
+@RequestMapping("role/")
+public class RolleWeb {
 	@Autowired
-	CompteService compteService;
+	RoleService roleService;
 	
 	@GetMapping("")
-	public ResponseEntity<List<Compte>> getRolles() {
-	    List<Compte> listRoles = compteService.getAll(); 
+	public ResponseEntity<List<Role>> getRolles() {
+	    List<Role > listRoles = roleService.gelAll(); 
 	    return new ResponseEntity<>(listRoles, HttpStatus.OK);
 	}
 	@PostMapping("")
-	public ResponseEntity<CompteResponseDto > addRolle(@RequestBody CompteRequestDto dtoRequestCompte) {
-		CompteResponseDto compteResponseDto=	compteService.addCompte(dtoRequestCompte);
-		return  new ResponseEntity<>(compteResponseDto,HttpStatus.CREATED);
+	public ResponseEntity<DtoResponseRole > addRolle(@RequestBody DtoRequestRolle dtoRequestRolle) {
+		DtoResponseRole dtoResponserolle=	roleService.addRole(dtoRequestRolle);
+		return  new ResponseEntity<>(dtoResponserolle,HttpStatus.CREATED);
 	}
 	
 }

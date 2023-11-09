@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompteResponseDto {
+public class DTOResponseAdmin {
 	private Integer Id;
-	private Integer mail;
-	private Integer motPass;
-	private Integer userName;
+	private String nom;
+	private String username;
+	private String mdp;
+	
 }

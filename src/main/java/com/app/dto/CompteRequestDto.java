@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CompteRequestDto {
-		private Integer mail;
-		private Integer motPass;
-		private Integer userName;
+		private String mail;
+		private String motPass;
+		private String userName;
 }
