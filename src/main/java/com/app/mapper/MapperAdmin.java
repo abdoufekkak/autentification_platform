@@ -18,10 +18,10 @@ public class MapperAdmin {
    }
    public DTOResponseAdmin adminToResponseDto(Admin admin) {
 	   DTOResponseAdmin	dtoResponseAdmin =new DTOResponseAdmin();
-	   DTOResponseAdmin.setNom(admin.getNom());
-	   DTOResponseAdmin.setId(admin.getId());
-	   DTOResponseAdmin.setUsername(admin.getUsername());
-	   DTOResponseAdmin.setMdp(admin.getMdp());
+	   dtoResponseAdmin.setNom(admin.getNom());
+	   dtoResponseAdmin.setId(admin.getId());
+	   dtoResponseAdmin.setUsername(admin.getUsername());
+	   dtoResponseAdmin.setMdp(admin.getMdp());
 
 		return dtoResponseAdmin;
 	} 

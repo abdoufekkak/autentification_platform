@@ -10,6 +10,7 @@ import com.app.entities.Role;
 public class CompteMapper {
 	public Compte requestCompteToCompte(CompteRequestDto dtoRequestCompte) {
 		Compte compte = new Compte();
+		
 		compte.setMail(dtoRequestCompte.getMail());
 		compte.setUserName(dtoRequestCompte.getUserName());
 		compte.setMotPass(dtoRequestCompte.getMotPass());
@@ -17,7 +18,8 @@ public class CompteMapper {
 
 	}
 		public CompteResponseDto compteToResponseDto(Compte compte) {
-			CompteResponseDto  	dtoResponseCompte =new CompteResponseDto();
+			CompteResponseDto dtoResponseCompte =new CompteResponseDto();
+			
 			dtoResponseCompte.setMail(compte.getMail());
 			dtoResponseCompte.setUserName(compte.getMail());
 			dtoResponseCompte.setMotPass(compte.getMotPass());
