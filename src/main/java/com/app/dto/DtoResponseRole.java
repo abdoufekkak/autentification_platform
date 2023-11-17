@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class DtoResponseRole {
 	private Integer Id;
 	private String roleName;
-
 }

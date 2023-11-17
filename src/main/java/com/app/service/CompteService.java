@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.dto.CompteRequestDto;
 import com.app.dto.CompteResponseDto;
@@ -16,6 +17,7 @@ import com.app.mapper.MapperRolle;
 import com.app.repo.CompteRepo;
 import com.app.repo.RepoRole;
 
+@Service
 public class CompteService {
 
 	@Autowired

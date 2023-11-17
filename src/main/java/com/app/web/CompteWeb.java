@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.CompteRequestDto;
 import com.app.dto.CompteResponseDto;
-import com.app.dto.DtoRequestRolle;
-import com.app.dto.DtoResponseRole;
 import com.app.entities.Compte;
 import com.app.service.CompteService;
-import com.app.service.RoleService;
 
 @RestController
 @RequestMapping("cmopte/")
@@ -42,5 +39,4 @@ public class CompteWeb {
 		compteService.deleteCompte(id);
 	        return ResponseEntity.noContent().build();
 	}
-	
 }

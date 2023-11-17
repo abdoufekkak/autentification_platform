@@ -12,5 +12,4 @@ public class DTOResponseAdmin {
 	private String nom;
 	private String username;
 	private String mdp;
-	
 }
